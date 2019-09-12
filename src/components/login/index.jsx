@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import {Form, Input, Icon, Button, Checkbox,message} from 'antd';//引入UI组件库
-import {Redirect} from 'react-router-dom'
+//import {Redirect} from 'react-router-dom'
+import {connect} from 'react-redux';
+import { saveUser } from '../../redux/action-creators';
+//import { saveUser } from '@redux/action-creators.js';
 import axios from 'axios'
 
 import './index.less'
@@ -8,6 +11,10 @@ import logo from './logo.png';
 
 //引入logo图标
 
+@connect(
+    null,
+    { saveUser }
+)
 @Form.create()//装饰器语法
 class Login extends Component {
    /*
@@ -33,15 +40,19 @@ class Login extends Component {
                 const {username,password} = values;//获取表单的值
                // console.log(values);
                 axios.post('http://localhost:3000/api/login',{username,password})
-                .then((response)=>{
-                    if (response.data.status===0) {
+                .then(({data})=>{
+                    //{data}是对response的结构赋值，利用了其身上的data属性
+                    if (data.status===0) {
                        //成功
                         message.success('登录成功');
+                       //保存用户数据
+                        this.props.saveUser(data.data);
                         //跳转‘/’路由
-                       return <Redirect to="/"/>
+                       //return <Redirect to="/"/>//一般用于在render方法中重新定向
+                       this.props.history.replace('/');//使用props上history的replace方法，一半用于非render方法进行路由跳转
                     }else{
                        //失败
-                        message.error(response.data.msg)
+                        message.error(data.msg)
                     }
                 })
                 .catch((error)=>{

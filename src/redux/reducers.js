@@ -2,14 +2,21 @@
   根据prevState和action来生成newState
  */
 import { combineReducers } from 'redux';
+import {SAVE_USER} from './action-types'
+const initUser ={
+    user: {},
+    token:''
+};
 
-function xxx(prevState = {}, action) {
+
+function user(prevState =initUser,action) {
     switch (action.type) {
+        case SAVE_USER:return  action.data;
         default :
             return prevState;
     }
 }
 
 export default combineReducers({
-    xxx
+    user
 })
