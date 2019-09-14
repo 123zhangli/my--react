@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Input, Icon, Button, message,Checkbox } from 'antd';
 
 import { reqLogin } from '../../api';
+import withCheckLogin from '../with-check-login'//引入高阶组件
 
 import { connect } from 'react-redux';
 import { saveUser } from '../../redux/action-creators';
@@ -9,6 +10,8 @@ import { saveUser } from '../../redux/action-creators';
 import logo from './logo.png';
 import './index.less';
 
+
+@withCheckLogin//用于登录时校验
 @connect(
   null,
   { saveUser }
