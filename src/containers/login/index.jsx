@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Form, Input, Icon, Button, message,Checkbox } from 'antd';
 
+import { saveUser } from '../../redux/action-creators';
 import { reqLogin } from '../../api';
 import withCheckLogin from '../with-check-login'//引入高阶组件
 
-import { connect } from 'react-redux';
-import { saveUser } from '../../redux/action-creators';
 
-import logo from './logo.png';
+import { connect } from 'react-redux';
+
+
+import logo from '../../assets/images/logo.png';
 import './index.less';
 
 
