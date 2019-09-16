@@ -16,7 +16,7 @@ function withCheckLogin(WrappedComponent) {
                         --登录过，不跳转
                         --没有登录，跳转 /login
                     */
-            const {token,...rest} = this.props;
+            const {token,...rest} = this.props;//...rest是剩下的属性
             const {location:{pathname}} = rest;
             //const token = this.props;
             if (pathname  === '/login' && token) return <Redirect to="/"/>;

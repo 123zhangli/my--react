@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { Layout, Breadcrumb, } from 'antd';
 
+import withCheckLogin from '../../containers/with-check-login';
 import Logo from '../../assets/images/logo.png'//引入图片
 import './index.less'//引入样式
 import LeftNav from './left-nav'//引入左部分结构
@@ -8,8 +9,8 @@ import LeftNav from './left-nav'//引入左部分结构
 
 const { Header, Content, Footer, Sider } = Layout;
 
-
-export default class BasicLayout extends Component {
+@withCheckLogin
+ class BasicLayout extends Component {
 
     state = {
         collapsed: false,
@@ -52,3 +53,4 @@ export default class BasicLayout extends Component {
         )
     }
 }
+export default BasicLayout
